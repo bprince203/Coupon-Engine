@@ -6,11 +6,11 @@ A production-quality React Native coupon engine app built with Expo, featuring a
 
 ---
 
-## 🚀 Live Preview & Recruiter Showcase
+## 🚀 Live Demo & Mobile Preview
 
-### ⭐ RECOMMENDED TESTING METHOD FOR RECRUITERS
-> **For the best mobile experience without APK installation friction**, we recommend testing via **Expo Go**:
-> 1. Download **Expo Go** from Google Play Store or Apple App Store on your phone.
+### 📲 Recommended Mobile Testing (Expo Go)
+> **For the best mobile experience without local setup or APK installation**:
+> 1. Download **Expo Go** from the App Store (iOS) or Google Play Store (Android).
 > 2. Scan the **QR Code** below or open the **[Expo Cloud Link](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/b3665561-4659-4b73-8e47-619c2f596ce5)**.
 
 ---
