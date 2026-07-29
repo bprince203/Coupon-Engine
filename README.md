@@ -2,6 +2,30 @@
 
 A production-quality React Native coupon engine app built with Expo, featuring a complete validation pipeline, premium dark-mode UI, and clean feature-based architecture.
 
+
+---
+
+## 🚀 Live Preview & Demo for Recruiters
+
+Test the working application instantly on Web, Mobile via Expo Go, or Standalone Android APK:
+
+| Platform | Preview Method | Action Link / QR Code |
+|---|---|---|
+| 🌐 **Web Browser** | Instant Browser Preview | 👉 **[Launch Live Web Preview](https://bprince203.github.io/Coupon-Engine/)** |
+| 📱 **Expo Go App** | Cloud Scan via Expo Go | 👉 **[Open Expo Go Cloud Page](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/b3665561-4659-4b73-8e47-619c2f596ce5)** |
+| 📦 **Android APK** | Direct APK Installation | 👉 **[Download Standalone APK](https://expo.dev/accounts/bprince203/projects/coupon-engine/builds/32e93e7a-b9c0-44f0-863a-ccf5ec7dd444)** |
+
+### 📲 Expo Go QR Code
+Scan this QR Code using **Expo Go** on your Android/iOS phone to launch the app immediately:
+
+<div align="center">
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fexpo.dev%2Faccounts%2Fbprince203%2Fprojects%2Fcoupon-engine%2Fupdates%2Fb3665561-4659-4b73-8e47-619c2f596ce5" width="220" height="220" alt="Expo Go QR Code" />
+
+*Scan with Expo Go App*
+
+</div>
+
 ---
 
 ## 📋 Table of Contents
