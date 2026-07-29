@@ -28,7 +28,7 @@ export function CouponListScreen({ navigation }: CouponListScreenProps) {
   const { colors, typography: typo, spacing } = useTheme();
   const { data: coupons, isLoading, isError, error, refetch, isRefetching } = useCoupons();
   const { filteredCoupons, filteredCount, isFiltering } = useSearchCoupons(coupons);
-  const { searchQuery, activeFilter, setSearchQuery, setFilter } = useFilterStore();
+  const { searchQuery, activeFilter, setSearchQuery, setFilter, resetFilters } = useFilterStore();
 
   const handleCouponPress = useCallback(
     (coupon: Coupon) => {
@@ -128,7 +128,7 @@ export function CouponListScreen({ navigation }: CouponListScreenProps) {
                 : 'No coupons available right now'
             }
             actionTitle={isFiltering ? 'Clear Filters' : undefined}
-            onAction={isFiltering ? () => useFilterStore.getState().resetFilters() : undefined}
+            onAction={isFiltering ? resetFilters : undefined}
           />
         ) : (
           <FlashList

@@ -7,8 +7,13 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
   transform: {
     '^.+\\.tsx?$': ['ts-jest', {
-      tsconfig: 'tsconfig.json',
-      diagnostics: false, // Skip type-checking in tests — handled by tsc --noEmit
+      tsconfig: {
+        strict: false,
+        esModuleInterop: true,
+        skipLibCheck: true,
+        jsx: 'react',
+      },
+      diagnostics: false,
     }],
   },
   moduleNameMapper: {

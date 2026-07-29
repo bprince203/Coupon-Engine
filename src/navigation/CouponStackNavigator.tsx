@@ -1,5 +1,6 @@
 /**
  * CouponStackNavigator — Stack navigator for coupon list → detail flow.
+ * Compatible with React Navigation v6 (Expo SDK 52).
  */
 
 import React from 'react';
@@ -12,7 +13,7 @@ import { CouponDetailScreen } from '../features/coupons/screens/CouponDetailScre
 const Stack = createNativeStackNavigator<CouponStackParamList>();
 
 export function CouponStackNavigator() {
-  const { colors, typography: typo } = useTheme();
+  const { colors } = useTheme();
 
   return (
     <Stack.Navigator
@@ -20,9 +21,8 @@ export function CouponStackNavigator() {
         headerStyle: { backgroundColor: colors.background },
         headerTintColor: colors.textPrimary,
         headerTitleStyle: {
-          fontWeight: typo.h4.fontWeight,
-          fontSize: typo.h4.fontSize,
-          fontFamily: typo.h4.fontFamily,
+          fontWeight: '700' as const,
+          fontSize: 17,
         },
         headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },

@@ -77,9 +77,9 @@ export function Toast({ visible, message, variant, onHide }: ToastProps) {
           backgroundColor: colors.surfaceElevated,
           borderRadius: br.md,
           borderLeftColor: iconColor,
+          pointerEvents: 'none',
         },
       ]}
-      pointerEvents="none"
       accessibilityLiveRegion="polite"
     >
       <Ionicons name={config.icon} size={20} color={iconColor} />

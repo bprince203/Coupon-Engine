@@ -1,6 +1,6 @@
 /**
  * RootNavigator — Bottom tab navigator with themed tab bar.
- * Three tabs: Coupons (stack), Validator, Applied.
+ * Compatible with React Navigation v6 (Expo SDK 52).
  */
 
 import React from 'react';
@@ -17,7 +17,7 @@ import { useCouponStore } from '../features/coupons/store/useCouponStore';
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export function RootNavigator() {
-  const { colors, typography: typo } = useTheme();
+  const { colors } = useTheme();
   const appliedCount = useCouponStore((state) => state.appliedCoupons.length);
 
   return (
@@ -35,8 +35,8 @@ export function RootNavigator() {
         tabBarActiveTintColor: colors.accent,
         tabBarInactiveTintColor: colors.textTertiary,
         tabBarLabelStyle: {
-          ...typo.caption,
           fontSize: 11,
+          fontWeight: '500' as const,
         },
       }}
     >
@@ -73,12 +73,8 @@ export function RootNavigator() {
           tabBarBadge: appliedCount > 0 ? appliedCount : undefined,
           tabBarBadgeStyle: {
             backgroundColor: colors.accent,
-            color: colors.textInverse,
             fontSize: 10,
-            fontWeight: '600',
             minWidth: 18,
-            height: 18,
-            lineHeight: 18,
           },
           tabBarAccessibilityLabel: 'Applied coupons tab',
         }}

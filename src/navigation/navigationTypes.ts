@@ -1,6 +1,7 @@
 /**
  * Typed navigation route parameters.
  * Provides type-safe navigation.navigate() calls throughout the app.
+ * Compatible with React Navigation v6 (Expo SDK 52).
  */
 
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
