@@ -3,26 +3,38 @@
 A production-quality React Native coupon engine app built with Expo, featuring a complete validation pipeline, premium dark-mode UI, and clean feature-based architecture.
 
 
+
 ---
 
-## 🚀 Live Preview & Demo for Recruiters
+## 🚀 Live Preview & Recruiter Showcase
 
-Test the working application instantly on Web, Mobile via Expo Go, or Standalone Android APK:
+### ⭐ RECOMMENDED TESTING METHOD FOR RECRUITERS
+> **For the best mobile experience without APK installation friction**, we recommend testing via **Expo Go**:
+> 1. Download **Expo Go** from Google Play Store or Apple App Store on your phone.
+> 2. Scan the **QR Code** below or open the **[Expo Cloud Link](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/b3665561-4659-4b73-8e47-619c2f596ce5)**.
 
-| Platform | Preview Method | Action Link / QR Code |
+---
+
+### 🎥 App Walkthrough Video
+🎬 **[Watch Full Video Demonstration (Google Drive)](https://drive.google.com/file/d/189O7xKD5LwfyjmW8b7Qj-xCC9i0A6sQH/view?usp=drive_link)**
+
+---
+
+### 📲 Quick Access Links & QR Code
+
+| Method | Access Link | Description |
 |---|---|---|
-| 🌐 **Web Browser** | Instant Browser Preview | 👉 **[Launch Live Web Preview](https://bprince203.github.io/Coupon-Engine/)** |
-| 📱 **Expo Go App** | Cloud Scan via Expo Go | 👉 **[Open Expo Go Cloud Page](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/b3665561-4659-4b73-8e47-619c2f596ce5)** |
-| 📦 **Android APK** | Direct APK Installation | 👉 **[Download Standalone APK](https://expo.dev/accounts/bprince203/projects/coupon-engine/builds/32e93e7a-b9c0-44f0-863a-ccf5ec7dd444)** |
-
-### 📲 Expo Go QR Code
-Scan this QR Code using **Expo Go** on your Android/iOS phone to launch the app immediately:
+| 📱 **Expo Go (Recommended)** | 👉 **[Open in Expo Go Cloud](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/b3665561-4659-4b73-8e47-619c2f596ce5)** | Instant cloud preview via Expo Go app |
+| 🎥 **Video Demo** | 👉 **[Watch Video Demonstration](https://drive.google.com/file/d/189O7xKD5LwfyjmW8b7Qj-xCC9i0A6sQH/view?usp=drive_link)** | Full feature walk-through video |
+| 📦 **Android APK** | 👉 **[Download Android APK](https://expo.dev/accounts/bprince203/projects/coupon-engine/builds/32e93e7a-b9c0-44f0-863a-ccf5ec7dd444)** | Pre-compiled standalone APK build |
 
 <div align="center">
 
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https%3A%2F%2Fexpo.dev%2Faccounts%2Fbprince203%2Fprojects%2Fcoupon-engine%2Fupdates%2Fb3665561-4659-4b73-8e47-619c2f596ce5" width="220" height="220" alt="Expo Go QR Code" />
+### 📱 Scan to Open in Expo Go
 
-*Scan with Expo Go App*
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=https%3A%2F%2Fexpo.dev%2Faccounts%2Fbprince203%2Fprojects%2Fcoupon-engine%2Fupdates%2Fb3665561-4659-4b73-8e47-619c2f596ce5" width="240" height="240" alt="Expo Go QR Code" />
+
+*Scan with Expo Go App on Android/iOS*
 
 </div>
 
@@ -32,6 +44,7 @@ Scan this QR Code using **Expo Go** on your Android/iOS phone to launch the app 
 
 - [Overview](#overview)
 - [Screenshots](#screenshots)
+- [Video Demo](#video-demo)
 - [Architecture](#architecture)
 - [Folder Structure](#folder-structure)
 - [Validation Engine](#validation-engine)
@@ -70,11 +83,15 @@ The app allows users to:
 
 ## Screenshots
 
-> *Screenshots to be added after running the app*
+<div align="center">
 
-| Coupon List | Coupon Detail | Validator | Applied |
-|---|---|---|---|
-| *Loading skeleton → Card list* | *Code + details + copy* | *Form + result card* | *Applied list + savings* |
+| Coupon List | Validated Coupon | Invalid Coupon | Applied Coupons |
+|:---:|:---:|:---:|:---:|
+| <img src="./assets/screenshots/coupon-list.png" width="200" alt="Coupon List" /> | <img src="./assets/screenshots/validator-valid.png" width="200" alt="Valid Coupon" /> | <img src="./assets/screenshots/validator-invalid.png" width="200" alt="Invalid Coupon" /> | <img src="./assets/screenshots/applied-coupons.png" width="200" alt="Applied Coupons" /> |
+| *Browse & Filter* | *Valid Validation* | *Min-Order Failure* | *Session Savings* |
+
+</div>
+
 
 ---
 
