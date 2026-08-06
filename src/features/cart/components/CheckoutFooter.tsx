@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   priceSection: {
-    width: 90,
+    flex: 1,
   },
   ctaButton: {
     flex: 1,

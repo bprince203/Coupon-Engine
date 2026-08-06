@@ -112,7 +112,7 @@ export function CartScreen({ navigation }: CartScreenProps) {
             { borderBottomColor: colors.border, paddingHorizontal: 16 },
           ]}
         >
-          <Text style={[typo.h4, { color: colors.textPrimary, fontWeight: '700' }]}>My Cart</Text>
+          <Text style={[typo.h4, { color: colors.textPrimary, fontWeight: '700' }]}>Shopping Cart</Text>
         </View>
 
         {/* Empty State */}
@@ -211,7 +211,7 @@ export function CartScreen({ navigation }: CartScreenProps) {
         ]}
       >
         <Text style={[typo.h4, { color: colors.textPrimary, fontWeight: '700' }]}>
-          My Cart ({itemCount})
+          Shopping Cart ({itemCount})
         </Text>
       </View>
 
@@ -222,6 +222,7 @@ export function CartScreen({ navigation }: CartScreenProps) {
       >
         {/* Delivery Address Row */}
         <AnimatedPressable
+          onPress={() => showToast('Address management coming soon', 'info')}
           pressScale={0.99}
           style={[
             styles.addressRow,
