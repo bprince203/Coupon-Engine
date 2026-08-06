@@ -11,13 +11,27 @@
 
 ---
 
-## 🚀 Live Demo
+## 🚀 Live Demo & Mobile Preview
+
+### 📲 Quick Access Links
 
 | Type | Link | Description |
 |---|---|---|
+| 📱 **Expo Go Cloud** | [Open in Expo Go Cloud](https://expo.dev/accounts/bprince203/projects/coupon-engine/updates/a7cefd39-cd9b-4ef4-81ee-5d4da9d1abb9) | Instant cloud preview via Expo Go app |
+| 🔗 **Expo Go Deep Link** | `exp://u.expo.dev/9e5837e4-e8f0-4638-aa05-cc58face74c2/group/a7cefd39-cd9b-4ef4-81ee-5d4da9d1abb9` | Open directly in Expo Go app |
 | 🎥 **Demo Video** | [Watch Video Demonstration](https://drive.google.com/file/d/13ln7w--rHjNZQF8Hr931kPCXjhgqa4X5/view?usp=drivesdk) | Google Drive Video Demo |
 | 📦 **APK Download** | [Download Android APK](https://expo.dev/accounts/bprince203/projects/coupon-engine/builds/32e93e7a-b9c0-44f0-863a-ccf5ec7dd444) | Direct APK Download from Expo EAS |
 | 💻 **GitHub Repository** | [Coupon-Engine](https://github.com/bprince203/Coupon-Engine) | Source Code Repository |
+
+<div align="center">
+
+### 📱 Scan to Open in Expo Go
+
+<img src="./assets/expo-qr.png" width="220" height="220" alt="Expo Go QR Code" />
+
+*Scan with camera or Expo Go App on Android / iOS*
+
+</div>
 
 ---
 
