@@ -130,7 +130,7 @@ export const darkColors: ColorScheme = {
 export const lightColors: ColorScheme = {
   background: palette.gray50,
   surface: palette.white,
-  surfaceElevated: palette.white,
+  surfaceElevated: '#F7F8FA',
   surfacePressed: palette.gray100,
 
   textPrimary: palette.gray900,

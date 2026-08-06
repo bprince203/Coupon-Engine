@@ -24,7 +24,7 @@ interface ThemeProviderProps {
 }
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
 
   const toggleTheme = useCallback(() => {
     setIsDark((prev) => !prev);
