@@ -5,6 +5,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../../../theme';
 import { AnimatedPressable } from '../../../shared/components/AnimatedPressable';
+import { Toast } from '../../../shared/components/Toast';
+import { useToast } from '../../../shared/hooks/useToast';
+import { useCartStore } from '../store/useCartStore';
 import { formatCurrency } from '../../coupons/utils/formatCurrency';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { CartStackParamList } from '../../../navigation/navigationTypes';
@@ -21,14 +24,27 @@ function formatOrderDate(timestamp: number): string {
   });
 }
 
+function estimatedDelivery(): string {
+  const d = new Date();
+  d.setDate(d.getDate() + 3);
+  return d.toLocaleDateString('en-IN', { weekday: 'long', day: 'numeric', month: 'short' });
+}
+
 export function OrderSuccessScreen({ route, navigation }: OrderSuccessScreenProps) {
   const { colors, typography: typo, borderRadius: br } = useTheme();
   const insets = useSafeAreaInsets();
+  const { toast, showToast, hideToast } = useToast();
+  const { restoreDefaultItems } = useCartStore();
   const { orderId, paidAmount, paymentMethod, savings, orderDate } = route.params;
 
-  const handleContinue = useCallback(() => {
+  const handleContinueShopping = useCallback(() => {
+    restoreDefaultItems();
     navigation.popToTop();
-  }, [navigation]);
+  }, [navigation, restoreDefaultItems]);
+
+  const handleTrackOrder = useCallback(() => {
+    showToast(`Tracking order ${orderId}`, 'success');
+  }, [orderId, showToast]);
 
   return (
     <View
@@ -37,17 +53,19 @@ export function OrderSuccessScreen({ route, navigation }: OrderSuccessScreenProp
         {
           backgroundColor: colors.background,
           paddingTop: insets.top,
-          paddingBottom: Math.max(insets.bottom, 24),
+          paddingBottom: Math.max(insets.bottom, 16),
         },
       ]}
     >
+      <Toast visible={toast.visible} message={toast.message} variant={toast.variant} onHide={hideToast} />
+
       <ScrollView
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={[styles.scrollContent, { paddingHorizontal: 20 }]}
         showsVerticalScrollIndicator={false}
       >
-        {/* Success Icon */}
+        {/* Success icon */}
         <Animated.View entering={ZoomIn.duration(500).springify()} style={styles.iconWrap}>
-          <View style={[styles.outerCircle, { backgroundColor: `${colors.success}15` }]}>
+          <View style={[styles.outerCircle, { backgroundColor: `${colors.success}12` }]}>
             <View style={[styles.innerCircle, { backgroundColor: colors.successBackground }]}>
               <Ionicons name="checkmark-circle" size={72} color={colors.success} />
             </View>
@@ -57,38 +75,55 @@ export function OrderSuccessScreen({ route, navigation }: OrderSuccessScreenProp
         {/* Title */}
         <Animated.View entering={FadeInDown.delay(200).duration(400).springify()} style={styles.titleWrap}>
           <Text style={[typo.h2, { color: colors.textPrimary, fontWeight: '800', textAlign: 'center' }]}>
-            Order Placed{'\n'}Successfully!
+            Order Confirmed!
           </Text>
-          <Text style={[typo.body, { color: colors.textSecondary, textAlign: 'center', marginTop: 10, lineHeight: 24 }]}>
-            Thank you for your purchase.{'\n'}You'll receive a confirmation email shortly.
+          <Text
+            style={[
+              typo.body,
+              { color: colors.textSecondary, textAlign: 'center', marginTop: 8, lineHeight: 24 },
+            ]}
+          >
+            Your order has been placed successfully.{'\n'}A confirmation will be sent to your email.
           </Text>
         </Animated.View>
 
-        {/* Order Details Card */}
+        {/* Estimated delivery */}
         <Animated.View
-          entering={FadeInDown.delay(320).duration(400).springify()}
+          entering={FadeInDown.delay(280).duration(380).springify()}
           style={[
-            styles.detailsCard,
+            styles.deliveryCard,
             {
-              backgroundColor: colors.surface,
+              backgroundColor: `${colors.accent}0A`,
+              borderColor: `${colors.accent}25`,
               borderRadius: br.lg,
-              borderColor: colors.border,
-              marginTop: 28,
+              marginTop: 20,
             },
           ]}
         >
-          <DetailRow
-            label="Order ID"
-            value={orderId}
-            valueColor={colors.accent}
-            showCopy
-          />
+          <Ionicons name="cube-outline" size={18} color={colors.accent} />
+          <View style={{ flex: 1, marginLeft: 10 }}>
+            <Text style={[typo.caption, { color: colors.textTertiary }]}>Estimated Delivery</Text>
+            <Text style={[typo.body, { color: colors.accent, fontWeight: '700', marginTop: 2 }]}>
+              {estimatedDelivery()}
+            </Text>
+          </View>
+        </Animated.View>
+
+        {/* Order details card */}
+        <Animated.View
+          entering={FadeInDown.delay(340).duration(400).springify()}
+          style={[
+            styles.detailsCard,
+            { backgroundColor: colors.surface, borderRadius: br.lg, borderColor: colors.border, marginTop: 16 },
+          ]}
+        >
+          <DetailRow label="Order ID" value={orderId} valueColor={colors.accent} showCopy />
           <DetailRow label="Order Date" value={formatOrderDate(orderDate)} />
-          <DetailRow label="Paid Amount" value={formatCurrency(paidAmount)} isBold />
+          <DetailRow label="Amount Paid" value={formatCurrency(paidAmount)} isBold />
           <DetailRow label="Payment Method" value={paymentMethod} isLast />
         </Animated.View>
 
-        {/* Savings Callout */}
+        {/* Savings callout */}
         {savings > 0 && (
           <Animated.View
             entering={FadeInDown.delay(440).duration(400).springify()}
@@ -110,23 +145,34 @@ export function OrderSuccessScreen({ route, navigation }: OrderSuccessScreenProp
         )}
       </ScrollView>
 
-      {/* CTAs */}
+      {/* Action buttons */}
       <Animated.View
-        entering={FadeInDown.delay(500).duration(400).springify()}
-        style={[styles.ctaWrap, { paddingHorizontal: 16 }]}
+        entering={FadeInDown.delay(500).duration(380).springify()}
+        style={[styles.ctaWrap, { paddingHorizontal: 20 }]}
       >
+        {/* Track Order */}
         <AnimatedPressable
-          onPress={handleContinue}
+          onPress={handleTrackOrder}
           pressScale={0.96}
           style={[styles.primaryCta, { backgroundColor: colors.accent }]}
+          accessibilityLabel="Track your order"
+          testID="track-order"
+        >
+          <Ionicons name="location-outline" size={18} color="#FFFFFF" style={{ marginRight: 8 }} />
+          <Text style={[typo.button, { color: '#FFFFFF', fontWeight: '700' }]}>Track Order</Text>
+        </AnimatedPressable>
+
+        {/* Continue Shopping */}
+        <AnimatedPressable
+          onPress={handleContinueShopping}
+          pressScale={0.95}
+          style={[styles.secondaryCta, { borderColor: colors.border }]}
           accessibilityLabel="Continue shopping"
           testID="continue-shopping"
         >
-          <Text style={[typo.button, { color: '#FFFFFF', fontWeight: '700' }]}>Continue Shopping</Text>
-        </AnimatedPressable>
-
-        <AnimatedPressable pressScale={0.95} style={{ marginTop: 12, alignSelf: 'center' }}>
-          <Text style={[typo.body, { color: colors.accent }]}>View Order Details</Text>
+          <Text style={[typo.button, { color: colors.textPrimary, fontWeight: '600' }]}>
+            Continue Shopping
+          </Text>
         </AnimatedPressable>
       </Animated.View>
     </View>
@@ -189,12 +235,10 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 16,
     paddingTop: 32,
+    paddingBottom: 16,
   },
-  iconWrap: {
-    alignItems: 'center',
-  },
+  iconWrap: { alignItems: 'center' },
   outerCircle: {
     width: 156,
     height: 156,
@@ -209,23 +253,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  titleWrap: {
+  titleWrap: { alignItems: 'center', marginTop: 20 },
+  deliveryCard: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
-  },
-  detailsCard: {
     borderWidth: 1,
-    overflow: 'hidden',
+    paddingHorizontal: 16,
+    paddingVertical: 14,
   },
+  detailsCard: { borderWidth: 1, overflow: 'hidden' },
   detailRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  valueRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  valueRow: { flexDirection: 'row', alignItems: 'center' },
   savingsCard: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -233,11 +275,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 14,
   },
-  ctaWrap: { paddingTop: 16 },
+  ctaWrap: { paddingTop: 12, gap: 10 },
   primaryCta: {
     height: 52,
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  secondaryCta: {
+    height: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
   },
 });
