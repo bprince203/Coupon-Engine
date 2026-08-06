@@ -15,9 +15,25 @@ export type CouponStackParamList = {
   CouponDetail: { couponId: string };
 };
 
+// ─── Cart Stack ──────────────────────────────────────────────────
+
+export type CartStackParamList = {
+  Cart: undefined;
+  Checkout: undefined;
+  Payment: undefined;
+  OrderSuccess: {
+    orderId: string;
+    paidAmount: number;
+    paymentMethod: string;
+    savings: number;
+    orderDate: number;
+  };
+};
+
 // ─── Root Tabs ───────────────────────────────────────────────────
 
 export type RootTabParamList = {
+  CartTab: NavigatorScreenParams<CartStackParamList>;
   CouponsTab: NavigatorScreenParams<CouponStackParamList>;
   ValidatorTab: { prefillCode?: string } | undefined;
   AppliedTab: undefined;
@@ -44,3 +60,4 @@ export type AppliedCouponsScreenProps = BottomTabScreenProps<
   RootTabParamList,
   'AppliedTab'
 >;
+
